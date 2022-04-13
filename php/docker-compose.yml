@@ -1,0 +1,28 @@
+version: "3.8"
+services:
+  carekonsulta-web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - carekonsulta-db
+    image: httpd:latest
+    restart: always
+    ports:
+      - "8000:80"
+    volumes:
+      - ./carekonsulta:/var/www/html
+    container_name: carekonsulta
+  carekonsulta-db:
+    image: mysql:5.7.30
+    volumes:
+       - ./mysql_data:/var/lib/mysql
+    ports:
+      - "3388:3306"
+    restart: always
+    environment:
+      MYSQL_DATABASE: carekonsulta
+      MYSQL_USER: webuser
+      MYSQL_PASSWORD: password
+      MYSQL_RANDOM_ROOT_PASSWORD: 'AY7r83bTsfFLmXVx'
+      

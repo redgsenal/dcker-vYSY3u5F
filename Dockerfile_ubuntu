@@ -1,0 +1,26 @@
+FROM ubuntu:20.04
+
+# Disable Prompt During Packages Installation
+ARG DEBIAN_FRONTEND=noninteractive
+RUN apt-get update && \
+    apt-get -y install gcc mono-mcs && \
+    apt-get install -y nginx php-fpm supervisor && \
+    apt-get install -y default-jre &&\
+    apt-get install -y cmake &&\
+    apt-get install -y git &&\
+    apt-get install -y nano && \
+    apt-get install -y vim && \
+    apt-get install -y gcc-arm-none-eabi && \
+    apt-get install -y build-essential && \
+    rm -rf /var/lib/apt/lists/* && \
+    apt clean
+
+# Define the ENV variable
+ENV nginx_vhost /etc/nginx/sites-available/default
+ENV php_conf /etc/php/7.4/fpm/php.ini
+ENV nginx_conf /etc/nginx/nginx.conf
+ENV supervisor_conf /etc/supervisor/supervisord.conf
+
+RUN mkdir /home/projects
+# Expose Port for the Application 
+EXPOSE 80 443 8000
