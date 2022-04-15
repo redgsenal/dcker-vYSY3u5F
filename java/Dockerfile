@@ -14,6 +14,10 @@ RUN rm -rf /var/lib/apt/lists/* &&\
 #ENV php_conf /etc/php/7.4/fpm/php.ini
 COPY ./webapps /usr/local/tomcat/webapps
 
+# set users
+RUN mv /usr/local/tomcat/conf/tomcat-users.xml /usr/local/tomcat/conf/tomcat-users.bak
+COPY ./tomcat-users.xml /usr/local/tomcat/conf
+
 #RUN mkdir /home/projects
 RUN chmod +x /usr/local/tomcat/bin/catalina.sh
 CMD ["catalina.sh", "run"]
