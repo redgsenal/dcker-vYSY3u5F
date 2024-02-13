@@ -1,0 +1,15 @@
+version: "3.8"
+services:  
+  carekonsulta-db:
+    image: mysql:5.7.37
+    volumes:
+       - ./mysql_data:/var/lib/mysql
+    ports:
+      - "3388:3306"
+    restart: always
+    environment:
+      MYSQL_DATABASE: carekonsulta
+      MYSQL_USER: webuser
+      MYSQL_PASSWORD: password
+      MYSQL_RANDOM_ROOT_PASSWORD: 'AY7r83bTsfFLmXVx'
+      

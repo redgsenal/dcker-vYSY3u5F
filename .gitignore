@@ -25,4 +25,4 @@ hs_err_pid*
 /mysql_data/*
 /java/mysql_data/*
 /php/mysql_data/*
-
+/mysql/mysql_data/*
